@@ -5,6 +5,12 @@
  */
 package Principal;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /**
  *
  * @author Owner
@@ -16,6 +22,8 @@ public class Clase_Principal extends javax.swing.JFrame {
      */
     public Clase_Principal() {
         initComponents();
+        
+
     }
 
     /**
@@ -28,31 +36,85 @@ public class Clase_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jd_agregar = new javax.swing.JDialog();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        t2_nombre = new javax.swing.JTextField();
+        t2_edad = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        t2_altura = new javax.swing.JTextField();
+        t2_id = new javax.swing.JTextField();
+        t2_peso = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        Femenino = new javax.swing.JRadioButton();
+        Masculino = new javax.swing.JRadioButton();
+        jLabel7 = new javax.swing.JLabel();
+        t2_ingreso = new com.toedter.calendar.JDateChooser();
+        jLabel8 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        rb_sexo = new javax.swing.ButtonGroup();
+        jd_agregar_doctor = new javax.swing.JDialog();
+        t1_nombre = new javax.swing.JTextField();
+        t1_edad = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        guardar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        t1_altura = new javax.swing.JTextField();
+        t1_id = new javax.swing.JTextField();
+        t1_peso = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        femenino = new javax.swing.JRadioButton();
+        masculino = new javax.swing.JRadioButton();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        t1_anios = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        t1_entrada = new javax.swing.JTextField();
+        t1_salida = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        lu = new javax.swing.JCheckBox();
+        sa = new javax.swing.JCheckBox();
+        vi = new javax.swing.JCheckBox();
+        ju = new javax.swing.JCheckBox();
+        mi = new javax.swing.JCheckBox();
+        ma = new javax.swing.JCheckBox();
+        dom = new javax.swing.JCheckBox();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jt_doctores = new javax.swing.JTree();
+        jPanel1 = new javax.swing.JPanel();
+        cb_pacientes = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         Agregar = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        t2_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                t2_nombreKeyTyped(evt);
             }
         });
 
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+        t2_edad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
+                t2_edadKeyTyped(evt);
             }
         });
 
         jLabel1.setText("Nombre");
 
-        jLabel2.setText("Numero");
+        jLabel2.setText("Edad");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Listo");
@@ -62,46 +124,410 @@ public class Clase_Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Nuevo Paciente");
+
+        jLabel4.setText("ID");
+
+        t2_altura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t2_alturaKeyTyped(evt);
+            }
+        });
+
+        t2_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t2_idKeyTyped(evt);
+            }
+        });
+
+        t2_peso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t2_pesoKeyTyped(evt);
+            }
+        });
+
+        jLabel5.setText("Peso");
+
+        jLabel6.setText("Altura");
+
+        rb_sexo.add(Femenino);
+        Femenino.setText("F");
+
+        rb_sexo.add(Masculino);
+        Masculino.setSelected(true);
+        Masculino.setText("M");
+
+        jLabel7.setText("Sexo");
+
+        jLabel8.setText("Fecha de Ingreso");
+
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton3.setText("Salir");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_agregarLayout = new javax.swing.GroupLayout(jd_agregar.getContentPane());
         jd_agregar.getContentPane().setLayout(jd_agregarLayout);
         jd_agregarLayout.setHorizontalGroup(
             jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_agregarLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(89, 89, 89)
-                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(150, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_agregarLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
+            .addGroup(jd_agregarLayout.createSequentialGroup()
+                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_agregarLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8))
+                        .addGap(85, 85, 85)
+                        .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(t2_edad, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(t2_nombre)
+                            .addComponent(t2_peso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(t2_altura, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(t2_id, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addGroup(jd_agregarLayout.createSequentialGroup()
+                                .addComponent(Masculino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Femenino))
+                            .addComponent(t2_ingreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jd_agregarLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel3)))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jd_agregarLayout.setVerticalGroup(
             jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_agregarLayout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(34, 34, 34)
                 .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(t2_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
                 .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(t2_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t2_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t2_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t2_peso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Masculino)
+                    .addComponent(jLabel7)
+                    .addComponent(Femenino))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(t2_ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addGroup(jd_agregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        t1_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_nombreKeyTyped(evt);
+            }
+        });
+
+        t1_edad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_edadKeyTyped(evt);
+            }
+        });
+
+        jLabel10.setText("Nombre");
+
+        jLabel11.setText("Edad");
+
+        guardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        guardar.setText("Guardar");
+        guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarMouseClicked(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel12.setText("Nuevo un Doctor");
+
+        jLabel13.setText("ID");
+
+        t1_altura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_alturaKeyTyped(evt);
+            }
+        });
+
+        t1_id.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_idKeyTyped(evt);
+            }
+        });
+
+        t1_peso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_pesoKeyTyped(evt);
+            }
+        });
+
+        jLabel14.setText("Peso");
+
+        jLabel15.setText("Altura");
+
+        rb_sexo.add(femenino);
+        femenino.setText("F");
+
+        rb_sexo.add(masculino);
+        masculino.setText("M");
+
+        jLabel16.setText("Sexo");
+
+        jLabel17.setText("Años de trabajo");
+
+        t1_anios.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_aniosKeyTyped(evt);
+            }
+        });
+
+        jLabel18.setText("Hora de entrada");
+
+        jLabel19.setText("Hora de salida");
+
+        t1_entrada.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_entradaKeyTyped(evt);
+            }
+        });
+
+        t1_salida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                t1_salidaKeyTyped(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        lu.setText("Lunes");
+
+        sa.setText("Sabado");
+
+        vi.setText("Viernes");
+
+        ju.setText("Jueves");
+
+        mi.setText("Miercoles");
+
+        ma.setText("Martes");
+
+        dom.setText("Domingo");
+
+        jLabel20.setText("Dias de trabajo");
+
+        javax.swing.GroupLayout jd_agregar_doctorLayout = new javax.swing.GroupLayout(jd_agregar_doctor.getContentPane());
+        jd_agregar_doctor.getContentPane().setLayout(jd_agregar_doctorLayout);
+        jd_agregar_doctorLayout.setHorizontalGroup(
+            jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabel12))
+                    .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel19)
+                            .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel18)
+                                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel17)))
+                            .addComponent(jLabel20))
+                        .addGap(62, 62, 62)
+                        .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(t1_edad, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(t1_nombre)
+                                .addComponent(t1_peso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(t1_altura, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addComponent(t1_id, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
+                                    .addComponent(masculino)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(femenino))
+                                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(t1_salida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                                    .addComponent(t1_entrada, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(t1_anios, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
+                                .addComponent(lu)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ma)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(mi)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ju)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(vi)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dom))
+                            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(guardar)))))
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+        jd_agregar_doctorLayout.setVerticalGroup(
+            jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(34, 34, 34)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t1_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t1_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t1_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t1_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t1_peso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(masculino)
+                    .addComponent(jLabel16)
+                    .addComponent(femenino))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(t1_anios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(t1_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(t1_salida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sa)
+                    .addComponent(vi)
+                    .addComponent(ju)
+                    .addComponent(mi)
+                    .addComponent(ma)
+                    .addComponent(lu)
+                    .addComponent(dom)
+                    .addComponent(jLabel20))
+                .addGap(30, 30, 30)
+                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Lista de doctores");
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Doctores");
+        jt_doctores.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jt_doctores);
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        cb_pacientes.setModel(new DefaultComboBoxModel());
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel21.setText("Seleccione un paciente: ");
+
+        jButton4.setText("Agregar a un doctor");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jLabel21)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(42, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(cb_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton4)
+                        .addGap(58, 58, 58))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel21)
+                .addGap(18, 18, 18)
+                .addComponent(cb_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
+        );
+
         jMenu1.setText("Inicio");
 
-        Agregar.setText("Agregar");
+        Agregar.setText("Agregar un paciente");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarActionPerformed(evt);
@@ -109,9 +535,26 @@ public class Clase_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(Agregar);
 
+        jMenuItem1.setText("Agregar un doctor");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Tool");
+
+        jMenuItem2.setText("Acerca de");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -120,31 +563,48 @@ public class Clase_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 479, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel9)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void t2_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2_nombreKeyTyped
         // TODO add your handling code here:
-         char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_t2_nombreKeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+    private void t2_edadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2_edadKeyTyped
         // TODO add your handling code here:
-         char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if ((c < '0' || c > '9')) {
             evt.consume();
         }
-    }//GEN-LAST:event_jTextField2KeyTyped
+    }//GEN-LAST:event_t2_edadKeyTyped
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         // TODO add your handling code here:
@@ -156,10 +616,199 @@ public class Clase_Principal extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
+        DefaultComboBoxModel pacientes = (DefaultComboBoxModel) cb_pacientes.getModel();
+       
+        String nombre = t2_nombre.getText();
+        int Edad = Integer.parseInt(t2_edad.getText());
+        int ID = Integer.parseInt(t2_id.getText());
+        double altura = Double.parseDouble(t2_altura.getText())
+                , peso = Double.parseDouble(t2_peso.getText());
+        String sexo;
+        if(rb_sexo.getSelection() == Masculino){
+            sexo = "Masculino";
+        }else{
+            sexo = "Femenino";
+        }
+        int anios = Integer.parseInt(t1_id.getText()) ;
         
         
-        jd_agregar.dispose();
+        
+        t2_nombre.setText("");
+        t2_edad.setText("");
+        t2_id.setText("");
+        t2_altura.setText("");
+        t2_peso.setText("");
+        
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void t2_alturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2_alturaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c < '.' || c > '.')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t2_alturaKeyTyped
+
+    private void t2_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2_idKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t2_idKeyTyped
+
+    private void t2_pesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2_pesoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c < '.' || c > '.')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t2_pesoKeyTyped
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Delmer Espinal Lab7 progra 2");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void t1_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_nombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t1_nombreKeyTyped
+
+    private void t1_edadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_edadKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t1_edadKeyTyped
+
+    private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
+        // TODO add your handling code here:
+        DefaultTreeModel m = (DefaultTreeModel) jt_doctores.getModel();
+        DefaultMutableTreeNode raiz
+                = (DefaultMutableTreeNode) m.getRoot();
+        String nombre = t1_nombre.getText();
+        int Edad = Integer.parseInt(t1_edad.getText());
+        int ID = Integer.parseInt(t1_id.getText());
+        double altura = Double.parseDouble(t1_altura.getText())
+                , peso = Double.parseDouble(t1_peso.getText());
+        String sexo;
+        if(rb_sexo.getSelection() == masculino){
+            sexo = "Masculino";
+        }else{
+            sexo = "Femenino";
+        }
+        int anios = Integer.parseInt(t1_id.getText()) ;
+        String horario = t1_entrada.getText() + "-" + t1_salida.getText();
+        ArrayList<String> Dias = new ArrayList();
+        if(lu.isSelected()){
+            Dias.add("Lunes");
+        }
+         if(ma.isSelected()){
+            Dias.add("Martes");
+        }
+          if(mi.isSelected()){
+            Dias.add("Miercoles");
+        }
+        if(ju.isSelected()){
+            Dias.add("Jueves");
+        }
+         if(vi.isSelected()){
+            Dias.add("Viernes");
+        }
+          if(sa.isSelected()){
+            Dias.add("Sabado");
+        }
+        if(dom.isSelected()){
+            Dias.add("Domingo");
+        }
+        
+        Doctor doctor = new Doctor(horario,anios,nombre, Edad, ID, altura, peso, sexo);
+        doctor.setDiasTrabajo(Dias);
+        
+        DefaultMutableTreeNode cliente = new DefaultMutableTreeNode(doctor);
+        raiz.add(cliente);
+        t1_nombre.setText("");
+        t1_edad.setText("");
+        t1_id.setText("");
+        t1_altura.setText("");
+        t1_peso.setText("");
+        t1_entrada.setText("");
+        t1_salida.setText("");
+        
+    }//GEN-LAST:event_guardarMouseClicked
+
+    private void t1_alturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_alturaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c < '.' || c > '.')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t1_alturaKeyTyped
+
+    private void t1_idKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_idKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t1_idKeyTyped
+
+    private void t1_pesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_pesoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c < '.' || c > '.')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t1_pesoKeyTyped
+
+    private void t1_aniosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_aniosKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t1_aniosKeyTyped
+
+    private void t1_entradaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_entradaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c < ':' || c > ':')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_t1_entradaKeyTyped
+
+    private void t1_salidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_salidaKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c < ':' || c > ':')) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_t1_salidaKeyTyped
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        jd_agregar_doctor.setModal(true);
+        jd_agregar_doctor.pack();
+        jd_agregar_doctor.setLocationRelativeTo(this);
+        jd_agregar_doctor.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jd_agregar_doctor.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+         jd_agregar.dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -198,14 +847,68 @@ public class Clase_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Agregar;
+    private javax.swing.JRadioButton Femenino;
+    private javax.swing.JRadioButton Masculino;
+    private javax.swing.JComboBox<String> cb_pacientes;
+    private javax.swing.JCheckBox dom;
+    private javax.swing.JRadioButton femenino;
+    private javax.swing.JButton guardar;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog jd_agregar;
+    private javax.swing.JDialog jd_agregar_doctor;
+    private javax.swing.JTree jt_doctores;
+    private javax.swing.JCheckBox ju;
+    private javax.swing.JCheckBox lu;
+    private javax.swing.JCheckBox ma;
+    private javax.swing.JRadioButton masculino;
+    private javax.swing.JCheckBox mi;
+    private javax.swing.ButtonGroup rb_sexo;
+    private javax.swing.JCheckBox sa;
+    private javax.swing.JTextField t1_altura;
+    private javax.swing.JTextField t1_anios;
+    private javax.swing.JTextField t1_edad;
+    private javax.swing.JTextField t1_entrada;
+    private javax.swing.JTextField t1_id;
+    private javax.swing.JTextField t1_nombre;
+    private javax.swing.JTextField t1_peso;
+    private javax.swing.JTextField t1_salida;
+    private javax.swing.JTextField t2_altura;
+    private javax.swing.JTextField t2_edad;
+    private javax.swing.JTextField t2_id;
+    private com.toedter.calendar.JDateChooser t2_ingreso;
+    private javax.swing.JTextField t2_nombre;
+    private javax.swing.JTextField t2_peso;
+    private javax.swing.JCheckBox vi;
     // End of variables declaration//GEN-END:variables
 }
