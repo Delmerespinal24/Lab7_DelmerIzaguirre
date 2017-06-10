@@ -5,6 +5,7 @@
  */
 package Principal;
 
+import Organos.*;
 import Organos.Organo;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -37,23 +38,28 @@ public class Clase_Principal extends javax.swing.JFrame {
         for (Doctor dt : doctores) {
             DefaultMutableTreeNode doctor = new DefaultMutableTreeNode(dt);
             for (Paciente pac : dt.getPacientes()) {
-                DefaultMutableTreeNode paciente = new DefaultMutableTreeNode(pac);
+                DefaultMutableTreeNode paciente = new DefaultMutableTreeNode("Paciente: " + pac);
+                DefaultMutableTreeNode o = new DefaultMutableTreeNode("Organos");
                 for (Organo lO : pac.getListaOrganos()) {
                     DefaultMutableTreeNode organo = new DefaultMutableTreeNode(lO);
 
-                    paciente.add(organo);
+                    o.add(organo);
                 }
+                paciente.add(o);
+                DefaultMutableTreeNode a = new DefaultMutableTreeNode("Alergias");
                 for (String alergia : pac.getAlergias()) {
                     DefaultMutableTreeNode alergias = new DefaultMutableTreeNode(alergia);
 
-                    paciente.add(alergias);
+                    a.add(alergias);
                 }
+                paciente.add(a);
+                DefaultMutableTreeNode e = new DefaultMutableTreeNode("Enfermedades");
                 for (String enf : pac.getEnfermedades()) {
                     DefaultMutableTreeNode enfermedad = new DefaultMutableTreeNode(enf);
 
-                    paciente.add(enfermedad);
+                    e.add(enfermedad);
                 }
-
+                paciente.add(e);
                 doctor.add(paciente);
 
             }
@@ -136,8 +142,10 @@ public class Clase_Principal extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         bt_organo = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jb_alergia = new javax.swing.JButton();
         bt_enfermedad = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         Agregar = new javax.swing.JMenuItem();
@@ -486,11 +494,24 @@ public class Clase_Principal extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bt_organoMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_organoMouseEntered(evt);
+            }
         });
 
-        jButton6.setText("Agregar una alergia");
+        jb_alergia.setText("Agregar una alergia");
+        jb_alergia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_alergiaMouseClicked(evt);
+            }
+        });
 
         bt_enfermedad.setText("Agregar una enfermedad");
+        bt_enfermedad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_enfermedadMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -501,7 +522,7 @@ public class Clase_Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bt_enfermedad)
                     .addComponent(bt_organo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_alergia, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jButton4)))
@@ -528,11 +549,25 @@ public class Clase_Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bt_enfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jb_alergia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        jButton6.setText("Guardar Archivo");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
+        jButton7.setText("Cargar Archivo");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
 
         jMenu1.setText("Inicio");
 
@@ -578,8 +613,15 @@ public class Clase_Principal extends javax.swing.JFrame {
                         .addGap(104, 104, 104)
                         .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(jButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton7)))
                         .addGap(60, 60, 60)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -590,10 +632,15 @@ public class Clase_Principal extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -835,18 +882,22 @@ public class Clase_Principal extends javax.swing.JFrame {
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
+        try {
+            DefaultMutableTreeNode nodo_seleccionado = (DefaultMutableTreeNode) jt_doctores.getSelectionPath().getLastPathComponent();
+            Doctor doctor_seleccionado = (Doctor) nodo_seleccionado.getUserObject();
 
-        DefaultMutableTreeNode nodo_seleccionado = (DefaultMutableTreeNode) jt_doctores.getSelectionPath().getLastPathComponent();
-        Doctor doctor_seleccionado = (Doctor) nodo_seleccionado.getUserObject();
-
-        Paciente paciente = (Paciente) cb_pacientes.getSelectedItem();
-        for (Doctor dr : doctores) {
-            if (dr.compararDoctor(doctor_seleccionado)) {
-                dr.addPaciente(paciente);
+            Paciente paciente = (Paciente) cb_pacientes.getSelectedItem();
+            for (Doctor dr : doctores) {
+                if (dr.compararDoctor(doctor_seleccionado)) {
+                    dr.addPaciente(paciente);
+                }
             }
+            cb_pacientes.remove(cb_pacientes.getSelectedIndex());
+            Recargar();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Seleccione solo doctores");
         }
-        cb_pacientes.remove(cb_pacientes.getSelectedIndex());
-        Recargar();
+
 
     }//GEN-LAST:event_jButton4MouseClicked
 
@@ -859,13 +910,14 @@ public class Clase_Principal extends javax.swing.JFrame {
                 organos, "Seleccione");
 
         Color color = JColorChooser.showDialog(this, "Seleccione un color", Color.yellow);
-        int potenciado;
-        int prueba;
-        while (listo) {
+        int potenciado = 0;
+        int prueba = 0;
+        while (!listo) {
 
             potenciado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel de potenciado"));
             prueba = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel de prueba"));
-
+           
+            listo = true;
         }
         ArrayList<String> caracteristicas = new ArrayList();
         char resp = 's';
@@ -876,10 +928,92 @@ public class Clase_Principal extends javax.swing.JFrame {
 
         }
 
-        Paciente pac = (Paciente) cb_pacientes.getSelectedItem();
+        Organo org;
+        switch (s_organo) {
+            case "Cerebro":
+                org = new Cerebro(color, potenciado, prueba);
+                break;
+            case "Corazon":
+                org = new Corazon(color, potenciado, prueba);
+                break;
+            case "Estomago":
+                org = new Estomago(color, potenciado, prueba);
+                break;
+            case "Higado":
+                org = new Higado(color, potenciado, prueba);
+                break;
+            case "Pancreas":
+                org = new Pancreas(color, potenciado, prueba);
+                break;
+            case "Pulmones":
+                org = new Pulmones(color, potenciado, prueba);
+                break;
+            default:
+                org = new Riñon(color, potenciado, prueba);
+                break;
 
+        }
+
+        Paciente pac = (Paciente) cb_pacientes.getSelectedItem();
+        org.setCaracteristicas(caracteristicas);
+        
+        
+        
+        while (org.getEfectividad()*org.getN_potenciado() > org.getN_prueba()) {
+
+            JOptionPane.showMessageDialog(this, "La multiplicacion del nivel de efectividad con el nivel de potenciado debe"
+                    + "de ser menor a el nivel de prueba");
+            potenciado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel de potenciado"));
+            prueba = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel de prueba"));
+            org.setN_potenciado(potenciado);
+            org.setN_prueba(prueba);
+           
+        }
+        pac.addOrganos(org);
 
     }//GEN-LAST:event_bt_organoMouseClicked
+
+    private void bt_enfermedadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_enfermedadMouseClicked
+        // TODO add your handling code here:
+        String enfermedad = JOptionPane.showInputDialog("Agregue una enfermedad");
+        Paciente pac = (Paciente) cb_pacientes.getSelectedItem();
+        pac.addEnfermedad(enfermedad);
+    }//GEN-LAST:event_bt_enfermedadMouseClicked
+
+    private void jb_alergiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_alergiaMouseClicked
+        // TODO add your handling code here:
+        String alergia = JOptionPane.showInputDialog("Agregue una alergia");
+        Paciente pac = (Paciente) cb_pacientes.getSelectedItem();
+        pac.addAlergias(alergia);
+    }//GEN-LAST:event_jb_alergiaMouseClicked
+
+    private void bt_organoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_organoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_organoMouseEntered
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        adminBinarios Ap = new adminBinarios("./Archivo.nuevo");
+        Ap.setListaPersonas(doctores);
+        Ap.escribirArchivo();
+        
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        // TODO add your handling code here:
+        adminBinarios Ap = new adminBinarios("./Archivo.nuevo");
+        try {
+            Ap.CargarArchivo();
+        } catch (Exception e) {
+            Ap.escribirArchivo();
+            Ap.CargarArchivo();
+        }
+        
+        
+        doctores = Ap.getListaPersonas();
+        Recargar();
+                
+    }//GEN-LAST:event_jButton7MouseClicked
 
     /**
      * @param args the command line arguments
@@ -932,6 +1066,7 @@ public class Clase_Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -961,6 +1096,7 @@ public class Clase_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton jb_alergia;
     private javax.swing.JDialog jd_agregar;
     private javax.swing.JDialog jd_agregar_doctor;
     private javax.swing.JTree jt_doctores;
