@@ -994,6 +994,7 @@ public class Clase_Principal extends javax.swing.JFrame {
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
         adminBinarios Ap = new adminBinarios("./Archivo.nuevo");
+        Ap.CargarArchivo();
         Ap.setListaPersonas(doctores);
         Ap.escribirArchivo();
         
@@ -1003,6 +1004,7 @@ public class Clase_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         adminBinarios Ap = new adminBinarios("./Archivo.nuevo");
         try {
+            
             Ap.CargarArchivo();
         } catch (Exception e) {
             Ap.escribirArchivo();
