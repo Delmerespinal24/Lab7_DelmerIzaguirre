@@ -23,6 +23,16 @@ public class Pulmones extends Organo{
         super(color, n_potenciado, n_prueba);
     }
     
+      @Override
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public int getEfectividad() {
+        return efectividad;
+    }
+    
     @Override
     public String toString() {
         return nombre;

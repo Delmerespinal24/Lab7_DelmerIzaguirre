@@ -58,6 +58,9 @@ public abstract class Organo {
     public void setN_prueba(int n_prueba) {
         this.n_prueba = n_prueba;
     }
+    
+    public abstract String getNombre();
+    public abstract int getEfectividad();
 
     @Override
     public abstract String toString();

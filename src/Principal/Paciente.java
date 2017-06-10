@@ -15,6 +15,16 @@ public class Paciente extends Persona{
     private ArrayList<String> Alergias = new ArrayList();
     private ArrayList<Organo> ListaOrganos = new ArrayList();
 
+    public Paciente() {
+        super();
+    }
+
+    public Paciente(Date fecha_ingreso, String nombre, int edad, int ID, double altura, double peso, String sexo) {
+        super(nombre, edad, ID, altura, peso, sexo);
+        this.fecha_ingreso = fecha_ingreso;
+    }
+    
+    
     public Paciente(Date fecha_ingreso) {
         this.fecha_ingreso = fecha_ingreso;
     }

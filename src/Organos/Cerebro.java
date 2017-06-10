@@ -22,6 +22,17 @@ public class Cerebro extends Organo{
     public Cerebro(Color color, int n_potenciado, int n_prueba) {
         super(color, n_potenciado, n_prueba);
     }
+
+    @Override
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public int getEfectividad() {
+        return efectividad;
+    }
+    
     
     @Override
     public String toString() {

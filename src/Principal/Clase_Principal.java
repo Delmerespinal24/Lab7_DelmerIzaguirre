@@ -5,8 +5,11 @@
  */
 package Principal;
 
+import Organos.Organo;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -20,10 +23,45 @@ public class Clase_Principal extends javax.swing.JFrame {
     /**
      * Creates new form Clase_Principal
      */
+    ArrayList<Doctor> doctores = new ArrayList();
+
     public Clase_Principal() {
         initComponents();
-        
 
+    }
+
+    public void Recargar() {
+        DefaultTreeModel m = (DefaultTreeModel) jt_doctores.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+        raiz.removeAllChildren();
+        for (Doctor dt : doctores) {
+            DefaultMutableTreeNode doctor = new DefaultMutableTreeNode(dt);
+            for (Paciente pac : dt.getPacientes()) {
+                DefaultMutableTreeNode paciente = new DefaultMutableTreeNode(pac);
+                for (Organo lO : pac.getListaOrganos()) {
+                    DefaultMutableTreeNode organo = new DefaultMutableTreeNode(lO);
+
+                    paciente.add(organo);
+                }
+                for (String alergia : pac.getAlergias()) {
+                    DefaultMutableTreeNode alergias = new DefaultMutableTreeNode(alergia);
+
+                    paciente.add(alergias);
+                }
+                for (String enf : pac.getEnfermedades()) {
+                    DefaultMutableTreeNode enfermedad = new DefaultMutableTreeNode(enf);
+
+                    paciente.add(enfermedad);
+                }
+
+                doctor.add(paciente);
+
+            }
+
+            raiz.add(doctor);
+
+        }
+        m.reload();
     }
 
     /**
@@ -86,6 +124,10 @@ public class Clase_Principal extends javax.swing.JFrame {
         ma = new javax.swing.JCheckBox();
         dom = new javax.swing.JCheckBox();
         jLabel20 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ta_especialidad = new javax.swing.JTextArea();
+        jButton5 = new javax.swing.JButton();
+        rb_sexo2 = new javax.swing.ButtonGroup();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jt_doctores = new javax.swing.JTree();
@@ -93,6 +135,9 @@ public class Clase_Principal extends javax.swing.JFrame {
         cb_pacientes = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        bt_organo = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        bt_enfermedad = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         Agregar = new javax.swing.JMenuItem();
@@ -167,6 +212,11 @@ public class Clase_Principal extends javax.swing.JFrame {
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -250,21 +300,27 @@ public class Clase_Principal extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
+        jd_agregar_doctor.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         t1_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_nombreKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 150, -1));
 
         t1_edad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_edadKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 117, 150, -1));
 
         jLabel10.setText("Nombre");
+        jd_agregar_doctor.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 80, -1, -1));
 
         jLabel11.setText("Edad");
+        jd_agregar_doctor.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 120, -1, -1));
 
         guardar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         guardar.setText("Guardar");
@@ -273,65 +329,83 @@ public class Clase_Principal extends javax.swing.JFrame {
                 guardarMouseClicked(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, -1, 40));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel12.setText("Nuevo un Doctor");
+        jd_agregar_doctor.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
         jLabel13.setText("ID");
+        jd_agregar_doctor.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(99, 158, -1, -1));
 
         t1_altura.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_alturaKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_altura, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 204, 150, -1));
 
         t1_id.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_idKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 155, 150, -1));
 
         t1_peso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_pesoKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_peso, new org.netbeans.lib.awtextra.AbsoluteConstraints(148, 242, 150, -1));
 
         jLabel14.setText("Peso");
+        jd_agregar_doctor.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 245, -1, -1));
 
         jLabel15.setText("Altura");
+        jd_agregar_doctor.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 204, -1, -1));
 
-        rb_sexo.add(femenino);
+        rb_sexo2.add(femenino);
         femenino.setText("F");
+        jd_agregar_doctor.getContentPane().add(femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 76, -1, -1));
 
-        rb_sexo.add(masculino);
+        rb_sexo2.add(masculino);
+        masculino.setSelected(true);
         masculino.setText("M");
+        jd_agregar_doctor.getContentPane().add(masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 76, -1, -1));
 
         jLabel16.setText("Sexo");
+        jd_agregar_doctor.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 80, -1, -1));
 
         jLabel17.setText("Años de trabajo");
+        jd_agregar_doctor.getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 120, -1, -1));
 
         t1_anios.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_aniosKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_anios, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 117, 135, -1));
 
         jLabel18.setText("Hora de entrada");
+        jd_agregar_doctor.getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 207, -1, -1));
 
         jLabel19.setText("Hora de salida");
+        jd_agregar_doctor.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 245, -1, -1));
 
         t1_entrada.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_entradaKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_entrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 204, 135, -1));
 
         t1_salida.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 t1_salidaKeyTyped(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(t1_salida, new org.netbeans.lib.awtextra.AbsoluteConstraints(469, 242, 135, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Salir");
@@ -340,141 +414,47 @@ public class Clase_Principal extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        jd_agregar_doctor.getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 450, 80, 40));
 
         lu.setText("Lunes");
+        jd_agregar_doctor.getContentPane().add(lu, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 311, -1, -1));
 
         sa.setText("Sabado");
+        jd_agregar_doctor.getContentPane().add(sa, new org.netbeans.lib.awtextra.AbsoluteConstraints(451, 311, -1, -1));
 
         vi.setText("Viernes");
+        jd_agregar_doctor.getContentPane().add(vi, new org.netbeans.lib.awtextra.AbsoluteConstraints(388, 311, -1, -1));
 
         ju.setText("Jueves");
+        jd_agregar_doctor.getContentPane().add(ju, new org.netbeans.lib.awtextra.AbsoluteConstraints(327, 311, -1, -1));
 
         mi.setText("Miercoles");
+        jd_agregar_doctor.getContentPane().add(mi, new org.netbeans.lib.awtextra.AbsoluteConstraints(256, 311, -1, -1));
 
         ma.setText("Martes");
+        jd_agregar_doctor.getContentPane().add(ma, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 311, -1, -1));
 
         dom.setText("Domingo");
+        jd_agregar_doctor.getContentPane().add(dom, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, -1, -1));
 
         jLabel20.setText("Dias de trabajo");
+        jd_agregar_doctor.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 311, -1, -1));
 
-        javax.swing.GroupLayout jd_agregar_doctorLayout = new javax.swing.GroupLayout(jd_agregar_doctor.getContentPane());
-        jd_agregar_doctor.getContentPane().setLayout(jd_agregar_doctorLayout);
-        jd_agregar_doctorLayout.setHorizontalGroup(
-            jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel12))
-                    .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel19)
-                            .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel18)
-                                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel17)))
-                            .addComponent(jLabel20))
-                        .addGap(62, 62, 62)
-                        .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(t1_edad, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                .addComponent(t1_nombre)
-                                .addComponent(t1_peso, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                .addComponent(t1_altura, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                .addComponent(t1_id, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
-                                    .addComponent(masculino)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(femenino))
-                                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(t1_salida, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                                    .addComponent(t1_entrada, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(t1_anios, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
-                                .addComponent(lu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ma)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(mi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ju)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(vi)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(sa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dom))
-                            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(guardar)))))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-        jd_agregar_doctorLayout.setVerticalGroup(
-            jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jd_agregar_doctorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12)
-                .addGap(34, 34, 34)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1_edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1_altura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1_peso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(masculino)
-                    .addComponent(jLabel16)
-                    .addComponent(femenino))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17)
-                    .addComponent(t1_anios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(t1_entrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(t1_salida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sa)
-                    .addComponent(vi)
-                    .addComponent(ju)
-                    .addComponent(mi)
-                    .addComponent(ma)
-                    .addComponent(lu)
-                    .addComponent(dom)
-                    .addComponent(jLabel20))
-                .addGap(30, 30, 30)
-                .addGroup(jd_agregar_doctorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31))
-        );
+        ta_especialidad.setEditable(false);
+        ta_especialidad.setColumns(20);
+        ta_especialidad.setRows(5);
+        ta_especialidad.setText("Especialidades:");
+        jScrollPane2.setViewportView(ta_especialidad);
+
+        jd_agregar_doctor.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 180, 120));
+
+        jButton5.setText("Agregar especialidad");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+        jd_agregar_doctor.getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, -1, 40));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -493,36 +473,65 @@ public class Clase_Principal extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Seleccione un paciente: ");
 
+        jButton4.setBackground(new java.awt.Color(51, 255, 51));
         jButton4.setText("Agregar a un doctor");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        bt_organo.setText("Agregar un organo");
+        bt_organo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bt_organoMouseClicked(evt);
+            }
+        });
+
+        jButton6.setText("Agregar una alergia");
+
+        bt_enfermedad.setText("Agregar una enfermedad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(jLabel21)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(cb_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(58, 58, 58))))
+                    .addComponent(bt_enfermedad)
+                    .addComponent(bt_organo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton4)))
+                .addGap(65, 65, 65))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel21))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(cb_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 51, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel21)
                 .addGap(18, 18, 18)
                 .addComponent(cb_pacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
+                .addComponent(bt_organo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bt_enfermedad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Inicio");
@@ -571,9 +580,9 @@ public class Clase_Principal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addGap(60, 60, 60)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,9 +590,9 @@ public class Clase_Principal extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -617,28 +626,27 @@ public class Clase_Principal extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         DefaultComboBoxModel pacientes = (DefaultComboBoxModel) cb_pacientes.getModel();
-       
+
         String nombre = t2_nombre.getText();
         int Edad = Integer.parseInt(t2_edad.getText());
         int ID = Integer.parseInt(t2_id.getText());
-        double altura = Double.parseDouble(t2_altura.getText())
-                , peso = Double.parseDouble(t2_peso.getText());
+        double altura = Double.parseDouble(t2_altura.getText()), peso = Double.parseDouble(t2_peso.getText());
         String sexo;
-        if(rb_sexo.getSelection() == Masculino){
+        if (rb_sexo.getSelection() == Masculino) {
             sexo = "Masculino";
-        }else{
+        } else {
             sexo = "Femenino";
         }
-        int anios = Integer.parseInt(t1_id.getText()) ;
-        
-        
-        
+
+        Paciente paciente = new Paciente(t2_ingreso.getDate(), nombre, Edad, ID, altura, peso, sexo);
+        pacientes.addElement(paciente);
+
         t2_nombre.setText("");
         t2_edad.setText("");
         t2_id.setText("");
         t2_altura.setText("");
         t2_peso.setText("");
-        
+
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void t2_alturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t2_alturaKeyTyped
@@ -688,50 +696,48 @@ public class Clase_Principal extends javax.swing.JFrame {
 
     private void guardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_guardarMouseClicked
         // TODO add your handling code here:
-        DefaultTreeModel m = (DefaultTreeModel) jt_doctores.getModel();
-        DefaultMutableTreeNode raiz
-                = (DefaultMutableTreeNode) m.getRoot();
+
         String nombre = t1_nombre.getText();
         int Edad = Integer.parseInt(t1_edad.getText());
         int ID = Integer.parseInt(t1_id.getText());
-        double altura = Double.parseDouble(t1_altura.getText())
-                , peso = Double.parseDouble(t1_peso.getText());
+        double altura = Double.parseDouble(t1_altura.getText()), peso = Double.parseDouble(t1_peso.getText());
         String sexo;
-        if(rb_sexo.getSelection() == masculino){
+        if (rb_sexo2.getSelection() == masculino) {
             sexo = "Masculino";
-        }else{
+        } else {
             sexo = "Femenino";
         }
-        int anios = Integer.parseInt(t1_id.getText()) ;
+        int anios = Integer.parseInt(t1_id.getText());
         String horario = t1_entrada.getText() + "-" + t1_salida.getText();
         ArrayList<String> Dias = new ArrayList();
-        if(lu.isSelected()){
+        if (lu.isSelected()) {
             Dias.add("Lunes");
         }
-         if(ma.isSelected()){
+        if (ma.isSelected()) {
             Dias.add("Martes");
         }
-          if(mi.isSelected()){
+        if (mi.isSelected()) {
             Dias.add("Miercoles");
         }
-        if(ju.isSelected()){
+        if (ju.isSelected()) {
             Dias.add("Jueves");
         }
-         if(vi.isSelected()){
+        if (vi.isSelected()) {
             Dias.add("Viernes");
         }
-          if(sa.isSelected()){
+        if (sa.isSelected()) {
             Dias.add("Sabado");
         }
-        if(dom.isSelected()){
+        if (dom.isSelected()) {
             Dias.add("Domingo");
         }
-        
-        Doctor doctor = new Doctor(horario,anios,nombre, Edad, ID, altura, peso, sexo);
+
+        Doctor doctor = new Doctor(horario, anios, nombre, Edad, ID, altura, peso, sexo);
         doctor.setDiasTrabajo(Dias);
-        
-        DefaultMutableTreeNode cliente = new DefaultMutableTreeNode(doctor);
-        raiz.add(cliente);
+
+        doctores.add(doctor);
+        Recargar();
+
         t1_nombre.setText("");
         t1_edad.setText("");
         t1_id.setText("");
@@ -739,7 +745,9 @@ public class Clase_Principal extends javax.swing.JFrame {
         t1_peso.setText("");
         t1_entrada.setText("");
         t1_salida.setText("");
-        
+        ta_especialidad.setText("Especialidades:");
+        especialidades = new ArrayList();
+
     }//GEN-LAST:event_guardarMouseClicked
 
     private void t1_alturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_t1_alturaKeyTyped
@@ -797,7 +805,7 @@ public class Clase_Principal extends javax.swing.JFrame {
         jd_agregar_doctor.pack();
         jd_agregar_doctor.setLocationRelativeTo(this);
         jd_agregar_doctor.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -807,8 +815,71 @@ public class Clase_Principal extends javax.swing.JFrame {
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-         jd_agregar.dispose();
+        jd_agregar.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
+
+    ArrayList<String> especialidades = new ArrayList();
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        String S = JOptionPane.showInputDialog("Ingrese alguna especialidad");
+        especialidades.add(S);
+        for (String esp : especialidades) {
+            ta_especialidad.append("\n" + S);
+        }
+
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+
+        DefaultMutableTreeNode nodo_seleccionado = (DefaultMutableTreeNode) jt_doctores.getSelectionPath().getLastPathComponent();
+        Doctor doctor_seleccionado = (Doctor) nodo_seleccionado.getUserObject();
+
+        Paciente paciente = (Paciente) cb_pacientes.getSelectedItem();
+        for (Doctor dr : doctores) {
+            if (dr.compararDoctor(doctor_seleccionado)) {
+                dr.addPaciente(paciente);
+            }
+        }
+        cb_pacientes.remove(cb_pacientes.getSelectedIndex());
+        Recargar();
+
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void bt_organoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bt_organoMouseClicked
+        // TODO add your handling code here:
+        Object[] organos = {"Cerebro", "Corazon", "Estomago", "Higado", "Pancreas", "Pulmones", "Riñon"};
+        boolean listo = false;
+        String s_organo = (String) JOptionPane.showInputDialog(null, "Seleccione Un Organo",
+                "ORGANOS", JOptionPane.QUESTION_MESSAGE, null,
+                organos, "Seleccione");
+
+        Color color = JColorChooser.showDialog(this, "Seleccione un color", Color.yellow);
+        int potenciado;
+        int prueba;
+        while (listo) {
+
+            potenciado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel de potenciado"));
+            prueba = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel de prueba"));
+
+        }
+        ArrayList<String> caracteristicas = new ArrayList();
+        char resp = 's';
+        while (resp == 's' || resp == 'S') {
+            String caract = JOptionPane.showInputDialog("Escriba la caracteristica del organo");
+            caracteristicas.add(caract);
+            resp = JOptionPane.showInputDialog("Desea agregar otra caracteristica[s/n]: ").charAt(0);
+
+        }
+
+        Paciente pac = (Paciente) cb_pacientes.getSelectedItem();
+
+
+    }//GEN-LAST:event_bt_organoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -849,6 +920,8 @@ public class Clase_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem Agregar;
     private javax.swing.JRadioButton Femenino;
     private javax.swing.JRadioButton Masculino;
+    private javax.swing.JButton bt_enfermedad;
+    private javax.swing.JButton bt_organo;
     private javax.swing.JComboBox<String> cb_pacientes;
     private javax.swing.JCheckBox dom;
     private javax.swing.JRadioButton femenino;
@@ -857,6 +930,8 @@ public class Clase_Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -885,6 +960,7 @@ public class Clase_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JDialog jd_agregar;
     private javax.swing.JDialog jd_agregar_doctor;
     private javax.swing.JTree jt_doctores;
@@ -894,6 +970,7 @@ public class Clase_Principal extends javax.swing.JFrame {
     private javax.swing.JRadioButton masculino;
     private javax.swing.JCheckBox mi;
     private javax.swing.ButtonGroup rb_sexo;
+    private javax.swing.ButtonGroup rb_sexo2;
     private javax.swing.JCheckBox sa;
     private javax.swing.JTextField t1_altura;
     private javax.swing.JTextField t1_anios;
@@ -909,6 +986,7 @@ public class Clase_Principal extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser t2_ingreso;
     private javax.swing.JTextField t2_nombre;
     private javax.swing.JTextField t2_peso;
+    private javax.swing.JTextArea ta_especialidad;
     private javax.swing.JCheckBox vi;
     // End of variables declaration//GEN-END:variables
 }

@@ -69,6 +69,20 @@ public class Doctor extends Persona{
         this.DiasTrabajo = DiasTrabajo;
     }
     
+    public void addPaciente(Paciente p){
+        this.pacientes.add(p);
+    }
+    
+    public boolean compararDoctor(Doctor d){
+        if(super.getNombre().equals(d.getNombre()) && super.getAltura() == d.getAltura() && super.getEdad() == d.getEdad()){
+            if(super.getID() == d.getID() && super.getPeso() == d.getPeso() && super.getSexo().equals(d.getSexo())){
+                return true;
+            }
+            
+        }
+        return false;
+    }
+    
     
     @Override
     public String toString() {
